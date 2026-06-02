@@ -132,7 +132,7 @@ export default function ContactUsPage() {
                 <div className="space-y-5">
                   {/* Phone */}
                   <a
-                    href="tel:+919591104481"
+                    href="tel:+918050298966"
                     className="block hover:text-[#f3b13e] transition"
                   >
                     <p className="text-[#f3b13e] font-semibold text-sm sm:text-base">
@@ -140,7 +140,7 @@ export default function ContactUsPage() {
                     </p>
 
                     <p className="text-white/90 mt-1 text-sm sm:text-base">
-                      +91 95911 04481
+                      +91 80502 98966
                     </p>
                   </a>
 

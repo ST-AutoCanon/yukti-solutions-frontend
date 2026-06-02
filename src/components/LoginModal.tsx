@@ -96,7 +96,7 @@
 // };
 
 // export default LoginPage;
-
+/////////////////////////////
 import React, { useState, useEffect, useRef } from "react";
 import { Eye, EyeOff, X } from "lucide-react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
@@ -112,7 +112,8 @@ const LoginPage = ({ closeLogin }) => {
   const [password, setPassword] = useState("");
 
   // Extra iframe / embed details
-  const [orgId] = useState(1);
+  // const [orgId] = useState(1);
+  const orgId = 30;
   const [iframeUrl] = useState("https://your-iframe-domain.com/dashboard");
 
   const [errorMessage, setErrorMessage] = useState("");
@@ -138,7 +139,7 @@ const LoginPage = ({ closeLogin }) => {
     e.preventDefault();
 
     setErrorMessage("");
-
+console.log("ATTEMPTING LOGIN WITH:", { username, password, orgId, iframeUrl });
     // Validation
     if (!username || !password) {
         console.log("USERNAME OR PASSWORD MISSING");
@@ -167,7 +168,6 @@ console.log("LOGIN DATA:", loginData);
         }),
       );
 
-      
       // Optional User Data
       const userData = {
         name: username,
@@ -298,3 +298,206 @@ console.log("LOGIN DATA:", loginData);
 };
 
 export default LoginPage;
+
+/////////////////////////
+// import React, { useEffect, useRef, useState } from "react";
+// import { useLocation, useNavigate } from "react-router-dom";
+// import { Eye, EyeOff, X } from "lucide-react";
+
+// type LoginProps = {
+//   onClose?: () => void;
+// };
+
+// const Login: React.FC<LoginProps> = ({ onClose }) => {
+//   const navigate = useNavigate();
+//   const location = useLocation();
+
+//   const [username, setUsername] = useState<string>("");
+//   const [password, setPassword] = useState<string>("");
+//   const [showPassword, setShowPassword] = useState<boolean>(false);
+//   const [errorMessage, setErrorMessage] = useState<string>("");
+//   const [isModalOpen, setIsModalOpen] = useState<boolean>(true);
+
+//   const errorRef = useRef<HTMLDivElement | null>(null);
+
+//   useEffect(() => {
+//     if (location.state?.loginError) {
+//       setErrorMessage(location.state.loginError);
+//     }
+//   }, [location.state]);
+
+//   useEffect(() => {
+//     if (errorMessage && errorRef.current) {
+//       errorRef.current.focus();
+//     }
+//   }, [errorMessage]);
+
+//   const toggleShowPassword = () => {
+//     setShowPassword((prev) => !prev);
+//   };
+
+//   const closeModal = () => {
+//     setIsModalOpen(false);
+
+//     if (onClose) {
+//       onClose();
+//     }
+//   };
+
+//   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+//     e.preventDefault();
+
+//     setErrorMessage("");
+
+//     if (!username || !password) {
+//       setErrorMessage("Username and password are required.");
+//       return;
+//     }
+
+//     try {
+//       sessionStorage.setItem(
+//         "EMBED_LOGIN",
+//         JSON.stringify({
+//           username,
+//           password,
+//           orgId: 30,
+//         }),
+//       );
+//     } catch (err) {
+//       console.warn("sessionStorage write failed", err);
+//     }
+
+//     navigate("/dashboard", { replace: true });
+//   };
+
+//   if (!isModalOpen) return null;
+
+//   return (
+//     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 px-4">
+//       <div
+//         role="dialog"
+//         aria-modal="true"
+//         aria-labelledby="login-title"
+//         className="relative w-full max-w-5xl overflow-hidden rounded-2xl bg-white shadow-2xl"
+//       >
+//         {/* Close Button */}
+//         <button
+//           onClick={closeModal}
+//           aria-label="Close login"
+//           className="absolute right-4 top-4 z-10 rounded-full p-2 text-gray-500 transition hover:bg-gray-100 hover:text-black"
+//         >
+//           <X size={20} />
+//         </button>
+
+//         <div className="grid min-h-[600px] grid-cols-1 md:grid-cols-2">
+//           {/* Left Image Section */}
+//           <div className="hidden items-center justify-center bg-gray-100 p-8 md:flex">
+//             <img
+//               src="/images/ITService.png"
+//               alt="Login illustration"
+//               className="max-h-[450px] w-full object-contain"
+//             />
+//           </div>
+
+//           {/* Right Form Section */}
+//           <div className="flex items-center justify-center p-8 md:p-12">
+//             <div className="w-full max-w-md">
+//               {/* Logo */}
+//               <div className="mb-8 flex justify-center">
+//                 <img
+//                   src="/images/Loginlogo.png"
+//                   alt="Logo"
+//                   className="h-16 object-contain"
+//                 />
+//               </div>
+
+//               <h2
+//                 id="login-title"
+//                 className="mb-6 text-center text-3xl font-bold text-gray-800"
+//               >
+//                 Welcome Back
+//               </h2>
+
+//               <form onSubmit={handleSubmit} className="space-y-5">
+//                 {/* Username */}
+//                 <div>
+//                   <label
+//                     htmlFor="username"
+//                     className="mb-2 block text-sm font-medium text-gray-700"
+//                   >
+//                     User Name
+//                   </label>
+
+//                   <input
+//                     id="username"
+//                     type="text"
+//                     value={username}
+//                     onChange={(e) => setUsername(e.target.value)}
+//                     placeholder="Enter your username"
+//                     autoComplete="username"
+//                     className="w-full rounded-xl border border-gray-300 px-4 py-3 outline-none transition focus:border-blue-500 focus:ring-2 focus:ring-blue-200"
+//                   />
+//                 </div>
+
+//                 {/* Password */}
+//                 <div>
+//                   <label
+//                     htmlFor="password"
+//                     className="mb-2 block text-sm font-medium text-gray-700"
+//                   >
+//                     Password
+//                   </label>
+
+//                   <div className="relative">
+//                     <input
+//                       id="password"
+//                       type={showPassword ? "text" : "password"}
+//                       value={password}
+//                       onChange={(e) => setPassword(e.target.value)}
+//                       placeholder="Enter your password"
+//                       autoComplete="current-password"
+//                       className="w-full rounded-xl border border-gray-300 px-4 py-3 pr-12 outline-none transition focus:border-blue-500 focus:ring-2 focus:ring-blue-200"
+//                     />
+
+//                     <button
+//                       type="button"
+//                       onClick={toggleShowPassword}
+//                       className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-500 hover:text-black"
+//                       aria-label={
+//                         showPassword ? "Hide password" : "Show password"
+//                       }
+//                     >
+//                       {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
+//                     </button>
+//                   </div>
+//                 </div>
+
+//                 {/* Error */}
+//                 {errorMessage && (
+//                   <div
+//                     ref={errorRef}
+//                     role="alert"
+//                     tabIndex={-1}
+//                     className="rounded-lg border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-600"
+//                   >
+//                     {errorMessage}
+//                   </div>
+//                 )}
+
+//                 {/* Login Button */}
+//                 <button
+//                   type="submit"
+//                   className="w-full rounded-xl bg-blue-600 px-4 py-3 font-semibold text-white transition hover:bg-blue-700"
+//                 >
+//                   Login
+//                 </button>
+//               </form>
+//             </div>
+//           </div>
+//         </div>
+//       </div>
+//     </div>
+//   );
+// };
+
+// export default Login;

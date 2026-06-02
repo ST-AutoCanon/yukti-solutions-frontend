@@ -145,7 +145,7 @@ const Navbar = () => {
               <img
                 src="/yuktilogo.png"
                 alt="Yukti Solutions"
-                className="h-26 w-auto"
+                className="h-20 w-auto"
               />
             </div>
 
