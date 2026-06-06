@@ -173,7 +173,7 @@ const Navbar = () => {
                 onClick={() => setShowLogin(true)}
                 className="bg-gradient-to-r from-[#D4A017] to-[#8B5A00] hover:opacity-90 text-white px-7 py-3 rounded-full font-medium shadow-lg transition-all duration-300"
               >
-                Login
+                Emp Login
               </button>
             </div>
 
@@ -216,7 +216,7 @@ const Navbar = () => {
                   }}
                   className="bg-gradient-to-r from-[#D4A017] to-[#8B5A00] hover:opacity-90 text-white px-7 py-3 rounded-full font-medium shadow-lg transition-all duration-300 w-fit"
                 >
-                  Login
+                  Emp Login
                 </button>
               </nav>
             </div>
