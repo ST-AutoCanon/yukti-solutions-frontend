@@ -856,8 +856,7 @@ export default function DashboardIframe({
           className="w-full h-full border border-gray-300"
           allow="camera; microphone; geolocation; fullscreen"
         />
-      </div>
-      <h1>hi</h1>
+      </div>      
     </div>
   );
 }
